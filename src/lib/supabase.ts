@@ -1,9 +1,18 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+let _supabase: SupabaseClient | null = null;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export function getSupabase(): SupabaseClient {
+  if (!_supabase) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error('Missing Supabase environment variables');
+    }
+    _supabase = createClient(supabaseUrl, supabaseAnonKey);
+  }
+  return _supabase;
+}
 
 /* ---- Types ---- */
 export interface Category {
@@ -46,7 +55,7 @@ export interface Post {
 /* ---- Queries ---- */
 
 export async function getPosts(locale: string, limit = 20) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('posts')
     .select('*, categories(*), authors(*)')
     .eq('locale', locale)
@@ -59,7 +68,7 @@ export async function getPosts(locale: string, limit = 20) {
 }
 
 export async function getPostBySlug(slug: string) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('posts')
     .select('*, categories(*), authors(*)')
     .eq('slug', slug)
@@ -71,7 +80,7 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getPostsByCategory(categorySlug: string, locale: string) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('posts')
     .select('*, categories!inner(*), authors(*)')
     .eq('categories.slug', categorySlug)
@@ -84,7 +93,7 @@ export async function getPostsByCategory(categorySlug: string, locale: string) {
 }
 
 export async function getFeaturedPost(locale: string) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('posts')
     .select('*, categories(*), authors(*)')
     .eq('locale', locale)
@@ -98,7 +107,7 @@ export async function getFeaturedPost(locale: string) {
 }
 
 export async function getCategories() {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('categories')
     .select('*')
     .order('slug');
@@ -108,7 +117,7 @@ export async function getCategories() {
 }
 
 export async function getRelatedPosts(currentSlug: string, categoryId: string, locale: string, limit = 3) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('posts')
     .select('*, categories(*), authors(*)')
     .eq('locale', locale)
@@ -123,7 +132,7 @@ export async function getRelatedPosts(currentSlug: string, categoryId: string, l
 }
 
 export async function subscribeNewsletter(email: string, locale: string = 'es') {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('subscribers')
     .insert({ email, locale });
 
@@ -137,7 +146,7 @@ export async function subscribeNewsletter(email: string, locale: string = 'es') 
 }
 
 export async function getAllPostSlugs() {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('posts')
     .select('slug, locale')
     .eq('published', true);
