@@ -7,7 +7,7 @@ import { adminTheme } from './theme';
 
 export default function AdminProviders({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+    <AppRouterCacheProvider options={{ enableCssLayer: false }}>
       <ThemeProvider theme={adminTheme}>
         <CssBaseline />
         <Box

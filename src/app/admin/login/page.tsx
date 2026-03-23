@@ -6,12 +6,9 @@ import {
   Chip,
   Container,
   Fade,
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  OutlinedInput,
   Paper,
   Stack,
+  TextField,
   Typography,
 } from '@mui/material';
 import { getAdminSession } from '@/lib/admin';
@@ -56,17 +53,17 @@ export default async function AdminLoginPage({
             variant="outlined"
             sx={{
               width: '100%',
-              maxWidth: 420,
+              maxWidth: 400,
               mx: 'auto',
-              p: { xs: 3.25, sm: 4 },
+              p: { xs: 3, sm: 4 },
               borderRadius: 4,
               borderColor: 'divider',
               boxShadow: '0 18px 60px rgba(15, 23, 42, 0.10)',
               backdropFilter: 'blur(12px)',
             }}
           >
-            <Stack spacing={3.25}>
-              <Stack spacing={1.5} alignItems="center" textAlign="center">
+            <Stack spacing={3} alignItems="stretch">
+              <Stack spacing={1.25} alignItems="center" textAlign="center">
                 <Chip label="Admin" color="primary" variant="outlined" sx={{ fontWeight: 600 }} />
 
                 <Box>
@@ -78,72 +75,41 @@ export default async function AdminLoginPage({
                     component="h1"
                     sx={{
                       mt: 0.75,
-                      fontSize: { xs: '1.6rem', sm: '1.8rem' },
-                      lineHeight: 1.15,
+                      fontSize: { xs: '1.75rem', sm: '2rem' },
+                      lineHeight: 1.12,
+                      maxWidth: 280,
+                      mx: 'auto',
                     }}
                   >
-                    Acceder al panel
+                    Acceso al CMS
                   </Typography>
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    sx={{ mt: 1, maxWidth: 320, mx: 'auto', lineHeight: 1.7 }}
+                    sx={{ mt: 1, maxWidth: 300, mx: 'auto', lineHeight: 1.7 }}
                   >
                     Usa la contrasena administrativa para publicar y editar articulos con calma y sin ruido.
                   </Typography>
                 </Box>
               </Stack>
 
-              <Box
-                component="form"
-                action="/api/admin/login"
-                method="post"
-                sx={{ display: 'grid', gap: 2.25 }}
-              >
-                <FormControl
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
+              <Box component="form" action="/api/admin/login" method="post" sx={{ display: 'grid', gap: 2 }}>
+                <TextField
+                  id="password"
+                  name="password"
+                  label="Contrasena"
+                  type="password"
+                  autoFocus
+                  autoComplete="current-password"
+                  required
                   error={hasError}
-                  sx={{
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: 2,
-                      minHeight: 56,
-                    },
-                  }}
-                >
-                  <InputLabel htmlFor="password">Contrasena</InputLabel>
-                  <OutlinedInput
-                    id="password"
-                    name="password"
-                    type="password"
-                    label="Contrasena"
-                    autoFocus
-                    autoComplete="current-password"
-                    required
-                  />
-                  <FormHelperText>{helperText}</FormHelperText>
-                </FormControl>
+                  helperText={helperText}
+                />
                 <Button
                   type="submit"
                   variant="contained"
                   size="large"
                   fullWidth
-                  disableElevation
-                  style={{
-                    backgroundColor: '#1f2937',
-                    color: '#ffffff',
-                  }}
-                  sx={{
-                    py: 1.35,
-                    mt: 0.5,
-                    transition: 'transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease',
-                    '&:hover': {
-                      backgroundColor: '#111827',
-                      boxShadow: '0 10px 24px rgba(15, 23, 42, 0.14)',
-                      transform: 'translateY(-1px)',
-                    },
-                  }}
                 >
                   Entrar
                 </Button>
