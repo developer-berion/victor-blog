@@ -9,3 +9,4 @@
 - Added snackbar feedback for save, delete, and validation outcomes.
 - Added MUI-based admin surface with a classic, simple layout.
 - Added a shared Markdown rendering helper and live content preview in the admin editor.
+- Improved the admin login surface with local-first visual validation, clearer spacing, and a visible CTA button.

@@ -1,5 +1,19 @@
 # Decisions
 
+## 2026-03-23 - Local-first iteration rhythm
+
+**Context:** The admin UI was being tuned through repeated production deploys, which made visual iteration noisy and slow.
+
+**Decision:** Work locally first, validate layout and behavior in the browser, then commit and deploy only after the local test gate passes.
+
+**Alternatives:** Continue deploying every visual tweak, or pause all work until a larger batch is ready.
+
+**Why:** This reduces latency during design fixes, keeps Vercel traffic stable, and makes debugging easier because each local change can be inspected before release.
+
+**Impact:** Faster UI iteration, fewer accidental production updates, and a cleaner commit history.
+
+**Follow-up/TODO:** Keep screenshots and temporary QA artifacts out of git; delete them or ignore them before committing.
+
 ## 2026-03-23 - Supabase + Next.js as the CMS stack
 
 **Context:** The project needed a lightweight CMS, not a separate heavyweight backend.

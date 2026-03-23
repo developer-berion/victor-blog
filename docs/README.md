@@ -7,3 +7,4 @@ Canonical local docs for the Victor Blog project.
 - [PROGRESS_LOG.md](./PROGRESS_LOG.md)
 - [CHANGELOG.md](./CHANGELOG.md)
 - [INTEGRATIONS_RUNBOOK.md](./INTEGRATIONS_RUNBOOK.md)
+- [LOCAL_WORKFLOW.md](./LOCAL_WORKFLOW.md)
