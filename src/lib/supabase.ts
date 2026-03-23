@@ -36,12 +36,9 @@ export interface Post {
   slug: string;
   locale: 'es' | 'en';
   title: string;
-  seo_title: string | null;
   excerpt: string;
-  seo_description: string | null;
   content: string;
   cover_image_url: string | null;
-  cover_image_alt: string | null;
   category_id: string;
   author_id: string;
   tags: string[];

@@ -14,7 +14,6 @@ type CardPost = {
   date: string;
   readingTime: number | null;
   coverImage: string | null;
-  imageAlt: string | null;
 };
 
 export const metadata: Metadata = {
@@ -46,7 +45,6 @@ const fallbackPosts: CardPost[] = [
     date: "2026-03-10",
     readingTime: 8,
     coverImage: null,
-    imageAlt: null,
   },
   {
     slug: "openai-lanza-nuevo-modelo-empresa",
@@ -57,7 +55,6 @@ const fallbackPosts: CardPost[] = [
     date: "2026-03-08",
     readingTime: 5,
     coverImage: null,
-    imageAlt: null,
   },
   {
     slug: "ecosistema-startups-ia-venezuela",
@@ -68,7 +65,6 @@ const fallbackPosts: CardPost[] = [
     date: "2026-03-05",
     readingTime: 6,
     coverImage: null,
-    imageAlt: null,
   },
   {
     slug: "automatizacion-empleos-mito-realidad",
@@ -79,7 +75,6 @@ const fallbackPosts: CardPost[] = [
     date: "2026-03-03",
     readingTime: 10,
     coverImage: null,
-    imageAlt: null,
   },
   {
     slug: "gemini-claude-gpt-comparativa",
@@ -90,7 +85,6 @@ const fallbackPosts: CardPost[] = [
     date: "2026-03-01",
     readingTime: 12,
     coverImage: null,
-    imageAlt: null,
   },
   {
     slug: "regulacion-ia-latam-2026",
@@ -101,7 +95,6 @@ const fallbackPosts: CardPost[] = [
     date: "2026-02-28",
     readingTime: 7,
     coverImage: null,
-    imageAlt: null,
   },
 ];
 
@@ -114,7 +107,6 @@ function mapPostToCard(post: Post): CardPost {
     date: post.published_at ?? post.created_at,
     readingTime: post.reading_time,
     coverImage: post.cover_image_url,
-    imageAlt: post.cover_image_alt,
   };
 }
 
@@ -194,7 +186,6 @@ export default async function HomePage() {
               date={post.date}
               readingTime={post.readingTime}
               coverImage={post.coverImage}
-              imageAlt={post.imageAlt}
               index={i}
             />
           ))}

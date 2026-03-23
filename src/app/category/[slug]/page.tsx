@@ -83,12 +83,11 @@ export default async function CategoryPage({
                 title={post.title}
                 excerpt={post.excerpt}
                 category={category.name_es}
-              date={post.published_at ?? post.created_at}
-              readingTime={post.reading_time}
-              coverImage={post.cover_image_url}
-              imageAlt={post.cover_image_alt}
-              index={index}
-            />
+                date={post.published_at ?? post.created_at}
+                readingTime={post.reading_time}
+                coverImage={post.cover_image_url}
+                index={index}
+              />
             ))}
           </div>
         ) : (

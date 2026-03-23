@@ -13,7 +13,6 @@ interface ArticleCardProps {
   date: string;
   readingTime: number | null;
   coverImage?: string | null;
-  imageAlt?: string | null;
   index?: number;
 }
 
@@ -25,7 +24,6 @@ export default function ArticleCard({
   date,
   readingTime,
   coverImage,
-  imageAlt,
   index = 0,
 }: ArticleCardProps) {
   const formattedDate = new Date(date).toLocaleDateString('es-ES', {
@@ -45,9 +43,9 @@ export default function ArticleCard({
       <Link href={`/blog/${slug}`} className={styles.link}>
         <div className={styles.imageWrapper}>
           {coverImage ? (
-              <Image
+            <Image
               src={coverImage}
-              alt={imageAlt || title}
+              alt={title}
               fill
               unoptimized
               className={styles.image}

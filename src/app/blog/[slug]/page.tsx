@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Newsletter from "@/components/ui/Newsletter";
@@ -33,33 +32,23 @@ export async function generateMetadata(
   }
 
   const canonicalUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
-  const seoTitle = post.seo_title || post.title;
-  const seoDescription = post.seo_description || post.excerpt;
 
   return {
-    title: seoTitle,
-    description: seoDescription,
+    title: post.title,
+    description: post.excerpt,
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
     openGraph: {
-      title: seoTitle,
-      description: seoDescription,
+      title: post.title,
+      description: post.excerpt,
       type: "article",
       url: canonicalUrl,
-      images: post.cover_image_url
-        ? [
-            {
-              url: post.cover_image_url,
-              alt: post.cover_image_alt || seoTitle,
-            },
-          ]
-        : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: seoTitle,
-      description: seoDescription,
+      title: post.title,
+      description: post.excerpt,
     },
   };
 }
@@ -87,14 +76,12 @@ export default async function ArticlePage({
   });
   const articleUrl = buildAbsoluteUrl(`/blog/${article.slug}`);
   const authorName = article.authors?.name ?? SITE_NAME;
-  const seoTitle = article.seo_title || article.title;
-  const seoDescription = article.seo_description || article.excerpt;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: seoTitle,
-    description: seoDescription,
+    headline: article.title,
+    description: article.excerpt,
     author: {
       "@type": "Person",
       name: authorName,
@@ -125,7 +112,7 @@ export default async function ArticlePage({
         ) : (
           <span className="category-label">{article.categories?.name_es ?? "Artículo"}</span>
         )}
-        <h1 className={styles.title}>{seoTitle}</h1>
+        <h1 className={styles.title}>{article.title}</h1>
         <div className={styles.meta}>
           <div className={styles.authorInfo}>
             <div className={styles.avatarPlaceholder} />
@@ -138,22 +125,11 @@ export default async function ArticlePage({
 
       <div className={styles.featuredImage}>
         <div className={styles.imagePlaceholder}>
-          {article.cover_image_url ? (
-            <Image
-              src={article.cover_image_url}
-              alt={article.cover_image_alt || seoTitle}
-              fill
-              unoptimized
-              sizes="(max-width: 768px) 100vw, 900px"
-              style={{ objectFit: 'cover' }}
-            />
-          ) : (
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21 15 16 10 5 21" />
-            </svg>
-          )}
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
         </div>
       </div>
 
@@ -177,7 +153,7 @@ export default async function ArticlePage({
       <section className={styles.authorCard}>
         <div className={styles.avatarLarge} />
         <div>
-            <h4 className={styles.authorCardName}>{authorName}</h4>
+          <h4 className={styles.authorCardName}>{authorName}</h4>
           <p className={styles.authorBio}>
             {article.authors?.bio_es ??
               "Fundador y editor. Escribe sobre inteligencia artificial, negocio y construcción de productos desde Latinoamérica."}
