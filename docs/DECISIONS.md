@@ -42,6 +42,20 @@
 
 **Follow-up/TODO:** Keep admin components classic, simple, and reusable.
 
+## 2026-03-23 - Admin MUI must not be layered behind global CSS
+
+**Context:** The admin login was inheriting the public site's global CSS rules, which distorted typography and button rendering inside MUI components.
+
+**Decision:** Disable CSS layer isolation for the admin MUI provider so the theme and MUI component styles stay authoritative on admin routes.
+
+**Alternatives:** Keep CSS layers enabled and fight the global site stylesheet with ad hoc overrides, or rewrite the public stylesheet first.
+
+**Why:** The admin surface needs predictable component rendering now, and the public CSS should not be able to override MUI buttons, headings, or fields.
+
+**Impact:** Admin typography, buttons, and form controls now follow the MUI theme instead of inherited public-site element rules.
+
+**Follow-up/TODO:** Keep admin-only layout and styling in the admin theme or component wrappers, not in the public globals.
+
 ## 2026-03-23 - Server-only cover uploads
 
 **Context:** Post covers needed a stable storage path and public URLs.

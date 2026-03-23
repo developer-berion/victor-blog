@@ -8,3 +8,5 @@ Canonical local docs for the Victor Blog project.
 - [CHANGELOG.md](./CHANGELOG.md)
 - [INTEGRATIONS_RUNBOOK.md](./INTEGRATIONS_RUNBOOK.md)
 - [LOCAL_WORKFLOW.md](./LOCAL_WORKFLOW.md)
+- [MUI_DESIGN_SYSTEM.md](./MUI_DESIGN_SYSTEM.md)
+- [MUI_MCP_SETUP.md](./MUI_MCP_SETUP.md)

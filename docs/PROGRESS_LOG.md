@@ -2,6 +2,9 @@
 
 ## 2026-03-23
 
+- Done: Installed the MUI MCP package locally and documented how to run it with the repo script.
+- Done: Found and fixed the admin CSS collision by disabling CSS layer isolation on admin routes.
+- Done: Refined the login screen so the MUI theme now controls typography, spacing, fields, and the primary button.
 - Done: Switched to a local-first iteration rhythm to avoid repeated Vercel deploys during UI polishing.
 - Done: Added `docs/LOCAL_WORKFLOW.md` as the operating contract for local QA, docs, and commits.
 - Done: Validated the admin login locally in browser after fixing spacing and CTA visibility.
@@ -11,4 +14,4 @@
 - Done: Created canonical local docs for context, decisions, progress, and integrations.
 - Decisions: See [DECISIONS.md](./DECISIONS.md).
 - Blockers: None active.
-- Next: Split the current changes into small commits, then continue with the remaining admin polish locally before any new deploy.
+- Next: Split the current changes into small commits, then continue polishing the admin table/editor locally before any new deploy.

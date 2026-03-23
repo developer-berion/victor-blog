@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "mui:mcp": "mcp"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -22,6 +23,7 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@mui/mcp": "^0.1.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
