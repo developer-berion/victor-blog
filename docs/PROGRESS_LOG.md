@@ -2,9 +2,6 @@
 
 ## 2026-03-23
 
-- Done: Added optional SEO columns to posts and exposed them in the admin editor with deterministic defaults and live preview.
-- Done: Defined explicit SEO naming rules for titles, descriptions, alt text, and image filenames.
-- Done: Documented the phase-2 AI review flow for SEO instead of planning local model training.
 - Done: Added canonical metadata, JSON-LD, `robots.txt`, `sitemap.xml`, and `/llms.txt` for search engines and LLMs.
 - Done: Cleaned up public-facing copy so the site is consistently written in Spanish with proper accents.
 - Done: Installed the MUI MCP package locally and documented how to run it with the repo script.

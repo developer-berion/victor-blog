@@ -2,9 +2,6 @@
 
 ## 2026-03-23
 
-- Added optional SEO fields to the CMS and a live SEO preview in the admin editor.
-- Added explicit rules for SEO title, meta description, cover alt text, and SEO-friendly image filenames.
-- Added phase-2 AI SEO planning docs that position the model as a reviewer, not an autonomous publisher.
 - Added canonical SEO metadata, JSON-LD, `robots.txt`, `sitemap.xml`, and a `/llms.txt` endpoint.
 - Cleaned up public copy so titles, summaries, and newsletter text are consistently in Spanish.
 - Adjusted the admin MUI provider so public site CSS no longer overrides component styling.
