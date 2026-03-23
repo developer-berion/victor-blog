@@ -1,11 +1,16 @@
 import 'server-only';
 
 import crypto from 'crypto';
-import path from 'path';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import type { Author, Category, Post } from './supabase';
+import {
+  buildCoverAltText,
+  buildDefaultSeoDescription,
+  buildDefaultSeoTitle,
+  buildSeoImageFileName,
+} from './seo';
 
 const ADMIN_COOKIE = 'victor_admin_session';
 const ADMIN_SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 7;
@@ -95,24 +100,10 @@ export function slugify(input: string) {
     .replace(/^-+|-+$/g, '');
 }
 
-function getFileExtension(file: File) {
-  const extension = path.extname(file.name).toLowerCase();
-  if (extension) {
-    return extension.startsWith('.') ? extension : `.${extension}`;
-  }
-
-  if (file.type === 'image/png') return '.png';
-  if (file.type === 'image/webp') return '.webp';
-  if (file.type === 'image/gif') return '.gif';
-  if (file.type === 'image/jpeg') return '.jpg';
-  return '.jpg';
-}
-
-export async function uploadAdminCoverImage(file: File, slugHint: string) {
+export async function uploadAdminCoverImage(file: File, slugHint: string, title: string) {
   const client = getAdminSupabase();
   const safeSlug = slugify(slugHint) || 'post';
-  const extension = getFileExtension(file);
-  const filePath = `${safeSlug}/${Date.now()}-${crypto.randomUUID()}${extension}`;
+  const filePath = buildSeoImageFileName(title, safeSlug, file);
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
@@ -182,9 +173,12 @@ export type AdminPostInput = {
   slug: string;
   locale: 'es' | 'en';
   title: string;
+  seo_title: string;
   excerpt: string;
+  seo_description: string;
   content: string;
   cover_image_url: string | null;
+  cover_image_alt: string;
   category_id: string;
   author_id: string;
   tags: string[];
@@ -199,6 +193,9 @@ export function parseAdminPostForm(formData: FormData): AdminPostInput {
   const locale = String(formData.get('locale') ?? 'es') as 'es' | 'en';
   const excerpt = String(formData.get('excerpt') ?? '').trim();
   const content = String(formData.get('content') ?? '').trim();
+  const seoTitleInput = String(formData.get('seo_title') ?? '').trim();
+  const seoDescriptionInput = String(formData.get('seo_description') ?? '').trim();
+  const coverAltInput = String(formData.get('cover_image_alt') ?? '').trim();
   const coverImage = String(formData.get('cover_image_url') ?? '').trim();
   const categoryId = String(formData.get('category_id') ?? '').trim();
   const authorId = String(formData.get('author_id') ?? '').trim();
@@ -210,9 +207,12 @@ export function parseAdminPostForm(formData: FormData): AdminPostInput {
     slug,
     locale: locale === 'en' ? 'en' : 'es',
     title,
+    seo_title: seoTitleInput || buildDefaultSeoTitle(title),
     excerpt,
+    seo_description: seoDescriptionInput || buildDefaultSeoDescription(excerpt),
     content,
     cover_image_url: coverImage || null,
+    cover_image_alt: coverAltInput || buildCoverAltText(title),
     category_id: categoryId,
     author_id: authorId,
     tags: tagsRaw

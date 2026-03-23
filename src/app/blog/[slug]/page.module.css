@@ -61,6 +61,8 @@
   align-items: center;
   justify-content: center;
   color: var(--color-text-subtle);
+  position: relative;
+  overflow: hidden;
 }
 
 /* Article Body */

@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   const coverFile = formData.get('cover_image_file');
 
   if (coverFile instanceof File && coverFile.size > 0) {
-    const uploaded = await uploadAdminCoverImage(coverFile, input.slug);
+    const uploaded = await uploadAdminCoverImage(coverFile, input.slug, input.title);
     input.cover_image_url = uploaded.publicUrl;
   }
 
