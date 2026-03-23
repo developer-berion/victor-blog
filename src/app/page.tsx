@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleCard from "@/components/blog/ArticleCard";
 import Newsletter from "@/components/ui/Newsletter";
 import { getPosts, type Post } from "@/lib/supabase";
+import { SITE_DESCRIPTION, SITE_NAME, buildAbsoluteUrl } from "@/lib/site";
 import styles from "./page.module.css";
 
 type CardPost = {
@@ -12,6 +14,25 @@ type CardPost = {
   date: string;
   readingTime: number | null;
   coverImage: string | null;
+};
+
+export const metadata: Metadata = {
+  title: `${SITE_NAME} — IA, negocios y LATAM`,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    title: `${SITE_NAME} — IA, negocios y LATAM`,
+    description: SITE_DESCRIPTION,
+    url: buildAbsoluteUrl("/"),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 const fallbackPosts: CardPost[] = [
@@ -102,9 +123,22 @@ export default async function HomePage() {
   }
 
   const [featured, ...articles] = cards;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: buildAbsoluteUrl("/"),
+    description: SITE_DESCRIPTION,
+    inLanguage: "es-ES",
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <div className={styles.heroText}>
@@ -119,7 +153,7 @@ export default async function HomePage() {
                   day: "numeric",
                 })}
               </time>
-              {featured.readingTime ? <span>· {featured.readingTime} min read</span> : null}
+              {featured.readingTime ? <span>· {featured.readingTime} min de lectura</span> : null}
             </div>
             <Link href={`/blog/${featured.slug}`} className={styles.heroCta}>
               Leer artículo →

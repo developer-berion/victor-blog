@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Newsletter from "@/components/ui/Newsletter";
 import { renderMarkdown } from "@/lib/markdown";
 import { getPostBySlug, getRelatedPosts } from "@/lib/supabase";
+import { buildAbsoluteUrl, SITE_NAME } from "@/lib/site";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -30,13 +31,24 @@ export async function generateMetadata(
     };
   }
 
+  const canonicalUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
+
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
     },
   };
 }
@@ -62,9 +74,36 @@ export default async function ArticlePage({
     month: "long",
     day: "numeric",
   });
+  const articleUrl = buildAbsoluteUrl(`/blog/${article.slug}`);
+  const authorName = article.authors?.name ?? SITE_NAME;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt,
+    author: {
+      "@type": "Person",
+      name: authorName,
+    },
+    publisher: {
+      "@type": "Person",
+      name: SITE_NAME,
+    },
+    datePublished: article.published_at ?? article.created_at,
+    dateModified: article.updated_at,
+    inLanguage: article.locale === "en" ? "en-US" : "es-ES",
+    mainEntityOfPage: articleUrl,
+    url: articleUrl,
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <section className={styles.articleHeader}>
         {article.categories?.slug ? (
           <Link href={`/category/${article.categories.slug}`} className="category-label">
@@ -77,10 +116,10 @@ export default async function ArticlePage({
         <div className={styles.meta}>
           <div className={styles.authorInfo}>
             <div className={styles.avatarPlaceholder} />
-            <span className={styles.authorName}>{article.authors?.name ?? "Victor Garcia"}</span>
+            <span className={styles.authorName}>{authorName}</span>
           </div>
           <time>{formattedDate}</time>
-          {article.reading_time ? <span>{article.reading_time} min read</span> : null}
+          {article.reading_time ? <span>{article.reading_time} min de lectura</span> : null}
         </div>
       </section>
 
@@ -114,7 +153,7 @@ export default async function ArticlePage({
       <section className={styles.authorCard}>
         <div className={styles.avatarLarge} />
         <div>
-          <h4 className={styles.authorCardName}>{article.authors?.name ?? "Victor Garcia"}</h4>
+          <h4 className={styles.authorCardName}>{authorName}</h4>
           <p className={styles.authorBio}>
             {article.authors?.bio_es ??
               "Fundador y editor. Escribe sobre inteligencia artificial, negocio y construcción de productos desde Latinoamérica."}

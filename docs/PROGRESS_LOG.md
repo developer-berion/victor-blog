@@ -2,6 +2,8 @@
 
 ## 2026-03-23
 
+- Done: Added canonical metadata, JSON-LD, `robots.txt`, `sitemap.xml`, and `/llms.txt` for search engines and LLMs.
+- Done: Cleaned up public-facing copy so the site is consistently written in Spanish with proper accents.
 - Done: Installed the MUI MCP package locally and documented how to run it with the repo script.
 - Done: Found and fixed the admin CSS collision by disabling CSS layer isolation on admin routes.
 - Done: Refined the login screen so the MUI theme now controls typography, spacing, fields, and the primary button.

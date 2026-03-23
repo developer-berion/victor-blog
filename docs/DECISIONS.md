@@ -56,6 +56,20 @@
 
 **Follow-up/TODO:** Keep admin-only layout and styling in the admin theme or component wrappers, not in the public globals.
 
+## 2026-03-23 - Public SEO and LLM indexability first-class routes
+
+**Context:** The site needed stronger crawlability and a clearer machine-readable surface for search engines and LLMs.
+
+**Decision:** Add canonical metadata, `robots.txt`, `sitemap.xml`, JSON-LD on key public pages, and a readable `/llms.txt` endpoint.
+
+**Alternatives:** Rely only on page-level metadata or keep the site as a human-only blog without machine-readable guidance.
+
+**Why:** This improves discovery, indexing, and semantic understanding for search engines and assistants without changing the editorial voice.
+
+**Impact:** Better canonical structure, easier crawling, cleaner snippet generation, and a simple machine-readable entrypoint for LLMs.
+
+**Follow-up/TODO:** Keep the sitemap current as the CMS grows and add JSON-LD to new content types as they appear.
+
 ## 2026-03-23 - Server-only cover uploads
 
 **Context:** Post covers needed a stable storage path and public URLs.

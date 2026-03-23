@@ -1,41 +1,40 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SiteChrome from "@/components/layout/SiteChrome";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+import { SITE_DESCRIPTION, SITE_NAME, getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Víctor García — IA, negocios y LATAM",
-    template: "%s | Víctor García",
+    default: `${SITE_NAME} — IA, negocios y LATAM`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Blog sobre inteligencia artificial enfocado en empresas, impacto en LATAM y Venezuela. Noticias, análisis y opinión desde la experiencia de un solopreneur.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "inteligencia artificial",
-    "AI",
+    "IA para empresas",
     "empresas",
     "LATAM",
     "Venezuela",
     "noticias IA",
-    "artificial intelligence",
-    "business",
+    "consultoría",
+    "solopreneur",
   ],
-  authors: [{ name: "Victor Garcia" }],
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
   openGraph: {
     type: "website",
     locale: "es_LA",
     alternateLocale: "en_US",
-    siteName: "Víctor García",
-    title: "Víctor García — IA, negocios y LATAM",
-    description: "Blog sobre IA enfocado en empresas, impacto en LATAM y Venezuela.",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — IA, negocios y LATAM`,
+    description: SITE_DESCRIPTION,
+    url: getSiteUrl(),
   },
   twitter: {
     card: "summary_large_image",
-    title: "Víctor García",
+    title: SITE_NAME,
     description: "Inteligencia artificial para empresas. Noticias, análisis e impacto en LATAM.",
   },
   robots: {

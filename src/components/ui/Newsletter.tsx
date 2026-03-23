@@ -45,7 +45,7 @@ export default function Newsletter() {
       transition={{ duration: 0.5 }}
     >
       <div className={styles.inner}>
-        <h2 className={styles.heading}>Stay informed</h2>
+        <h2 className={styles.heading}>Mantente al día</h2>
         <p className={styles.subtext}>
           Recibe análisis sobre IA y su impacto en las empresas directamente en tu inbox.
         </p>

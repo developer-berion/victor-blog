@@ -68,7 +68,7 @@ export default function ArticleCard({
           <p className={styles.excerpt}>{excerpt}</p>
           <div className={styles.meta}>
             <time>{formattedDate}</time>
-            {readingTime && <span>{readingTime} min read</span>}
+            {readingTime && <span>{readingTime} min de lectura</span>}
           </div>
         </div>
       </Link>

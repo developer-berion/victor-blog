@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import ArticleCard from "@/components/blog/ArticleCard";
 import Newsletter from "@/components/ui/Newsletter";
 import { getCategories, getPostsByCategory } from "@/lib/supabase";
+import { buildAbsoluteUrl } from "@/lib/site";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -28,6 +29,15 @@ export async function generateMetadata(
   return {
     title: category.name_es,
     description: `Artículos publicados en ${category.name_es}.`,
+    alternates: {
+      canonical: `/category/${category.slug}`,
+    },
+    openGraph: {
+      type: "website",
+      title: category.name_es,
+      description: `Artículos publicados en ${category.name_es}.`,
+      url: buildAbsoluteUrl(`/category/${category.slug}`),
+    },
   };
 }
 

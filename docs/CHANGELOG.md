@@ -2,6 +2,8 @@
 
 ## 2026-03-23
 
+- Added canonical SEO metadata, JSON-LD, `robots.txt`, `sitemap.xml`, and a `/llms.txt` endpoint.
+- Cleaned up public copy so titles, summaries, and newsletter text are consistently in Spanish.
 - Adjusted the admin MUI provider so public site CSS no longer overrides component styling.
 - Refined the login card to use MUI defaults for field rhythm, typography, and the primary button.
 - Added local MUI MCP setup documentation and a repo script for compatible clients.

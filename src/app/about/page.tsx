@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
 import Newsletter from "@/components/ui/Newsletter";
+import { SITE_DESCRIPTION, SITE_NAME, buildAbsoluteUrl } from "@/lib/site";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Acerca",
   description:
     "Historia de Víctor García, su enfoque como solopreneur y la línea editorial del blog sobre IA, negocios y Latinoamérica.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    type: "profile",
+    title: `Acerca de ${SITE_NAME}`,
+    description: SITE_DESCRIPTION,
+    url: buildAbsoluteUrl("/about"),
+  },
 };
 
 const pillars = [
