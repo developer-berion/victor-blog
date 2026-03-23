@@ -16,6 +16,48 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Environment Variables
+
+Create a local `.env.local` file with:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+SUPABASE_SERVICE_ROLE_KEY=
+ADMIN_PASSWORD=
+```
+
+If you later separate session signing from the service role key, add:
+
+```bash
+ADMIN_SESSION_SECRET=
+```
+
+In Vercel, define the same `NEXT_PUBLIC_*` variables under Project Settings > Environment Variables. Add the service role key only if you implement a secure server-side admin flow.
+
+## Admin Panel
+
+The project includes a minimal admin panel under `/admin` for single-user publishing:
+
+- `/admin/login` for password access
+- `/admin/posts` to list all posts
+- `/admin/posts/new` to create a post
+- `/admin/posts/:id/edit` to update a post
+- Portadas subidas desde el panel se guardan en Supabase Storage dentro del bucket público `blog-covers`
+
+The panel talks to Supabase only on the server using the service role key.
+
+## Local Documentation
+
+Canonical local docs live in [`docs/`](./docs/):
+
+- [`PROJECT_CONTEXT.md`](./docs/PROJECT_CONTEXT.md)
+- [`DECISIONS.md`](./docs/DECISIONS.md)
+- [`PROGRESS_LOG.md`](./docs/PROGRESS_LOG.md)
+- [`CHANGELOG.md`](./docs/CHANGELOG.md)
+- [`INTEGRATIONS_RUNBOOK.md`](./docs/INTEGRATIONS_RUNBOOK.md)
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

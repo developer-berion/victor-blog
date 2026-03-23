@@ -1,0 +1,9 @@
+# Project Docs
+
+Canonical local docs for the Victor Blog project.
+
+- [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md)
+- [DECISIONS.md](./DECISIONS.md)
+- [PROGRESS_LOG.md](./PROGRESS_LOG.md)
+- [CHANGELOG.md](./CHANGELOG.md)
+- [INTEGRATIONS_RUNBOOK.md](./INTEGRATIONS_RUNBOOK.md)

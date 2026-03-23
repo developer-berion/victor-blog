@@ -1,0 +1,125 @@
+.hero {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-md) var(--space-lg);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: var(--space-xs) 0;
+  max-width: 760px;
+}
+
+.description {
+  max-width: 760px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+}
+
+.grid {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md) var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  background: var(--color-bg);
+}
+
+.card h2 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.card p {
+  color: var(--color-text-muted);
+}
+
+.story {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md) var(--space-section);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-sm);
+}
+
+.bodyText {
+  color: var(--color-text-muted);
+  max-width: 720px;
+}
+
+.listCard {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  background: var(--color-bg-alt);
+}
+
+.listTitle {
+  font-family: var(--font-heading);
+  margin-bottom: var(--space-sm);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.list li {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 0.8rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+}
+
+.quoteBlock {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md) var(--space-section);
+}
+
+.quoteBlock p {
+  border-left: 4px solid var(--color-accent);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: var(--font-size-3xl);
+  }
+}

@@ -51,7 +51,11 @@ export default function Newsletter() {
         </p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
+          <label htmlFor="newsletter-email" className={styles.label}>
+            Correo electrónico
+          </label>
           <input
+            id="newsletter-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

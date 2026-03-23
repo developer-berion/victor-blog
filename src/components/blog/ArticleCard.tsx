@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ArticleCard.module.css';
 
@@ -42,7 +43,14 @@ export default function ArticleCard({
       <Link href={`/blog/${slug}`} className={styles.link}>
         <div className={styles.imageWrapper}>
           {coverImage ? (
-            <img src={coverImage} alt={title} className={styles.image} />
+            <Image
+              src={coverImage}
+              alt={title}
+              fill
+              unoptimized
+              className={styles.image}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
           ) : (
             <div className={styles.imagePlaceholder}>
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
