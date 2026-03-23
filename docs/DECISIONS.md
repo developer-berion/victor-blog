@@ -70,6 +70,34 @@
 
 **Follow-up/TODO:** Keep the sitemap current as the CMS grows and add JSON-LD to new content types as they appear.
 
+## 2026-03-23 - SEO fields belong in the CMS, not only in page templates
+
+**Context:** The admin needed to govern SEO title, description, and alt text directly instead of relying only on page-level fallbacks.
+
+**Decision:** Add optional SEO columns to `posts` and expose them in the admin form with deterministic defaults.
+
+**Alternatives:** Keep SEO fully implicit in the frontend, or create a separate SEO service.
+
+**Why:** The CMS should own the editorial SEO contract so titles, meta descriptions, and image alt text can be reviewed before publish.
+
+**Impact:** SEO can now be edited, previewed, stored, and later reviewed by an AI assistant without changing the public fallback logic.
+
+**Follow-up/TODO:** Wire AI-assisted review on top of these stored fields in phase 2.
+
+## 2026-03-23 - AI-assisted SEO should start as review, not autonomous publishing
+
+**Context:** The next phase will use an OpenAI model to review SEO before publish.
+
+**Decision:** Use AI to suggest and audit SEO instead of letting it publish automatically.
+
+**Alternatives:** Fully autonomous publication or manual SEO only.
+
+**Why:** The blog needs human editorial control, especially when the content is tied to personal brand and operational claims.
+
+**Impact:** AI becomes a reviewer and helper, not a silent editor.
+
+**Follow-up/TODO:** Implement a draft review endpoint, suggestion storage, and an approval step.
+
 ## 2026-03-23 - Server-only cover uploads
 
 **Context:** Post covers needed a stable storage path and public URLs.
