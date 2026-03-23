@@ -2,9 +2,10 @@
 
 ## 2026-03-23
 
-- Hecho: Se montó un CMS mínimo sobre Supabase y Next.js con panel admin, CRUD de posts, upload de portadas y feedback visual.
-- Hecho: Se migró el admin a Material UI con layout clásico, preview de portada y confirmación antes de borrar.
-- Hecho: Se creó documentación local canónica para contexto, decisiones, progreso e integraciones.
-- Decisiones: Ver [DECISIONS.md](./DECISIONS.md).
-- Bloqueos: Ninguno activo.
-- Próximo: Markdown editor con preview dividido y, si hace falta, refinamiento de permisos/roles.
+- Done: Built a minimal CMS on Supabase and Next.js with admin panel, CRUD posts, cover uploads, and visual feedback.
+- Done: Migrated the admin to Material UI with a classic layout, cover preview, and delete confirmation.
+- Done: Extracted Markdown rendering into a shared helper and added live content preview in the admin editor.
+- Done: Created canonical local docs for context, decisions, progress, and integrations.
+- Decisions: See [DECISIONS.md](./DECISIONS.md).
+- Blockers: None active.
+- Next: Markdown editor with split preview and, if needed, permissions/role refinement.

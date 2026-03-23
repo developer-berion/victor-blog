@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import AddPhotoAlternateRoundedIcon from '@mui/icons-material/AddPhotoAlternateRounded';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import {
@@ -21,6 +21,7 @@ import {
   Typography,
 } from '@mui/material';
 import type { Category, Post } from '@/lib/supabase';
+import { renderMarkdown } from '@/lib/markdown';
 
 type PostFormProps = {
   action: string;
@@ -34,6 +35,7 @@ export default function PostForm({ action, categories, authorId, post, submitLab
   const currentObjectUrlRef = useRef<string | null>(null);
   const [title, setTitle] = useState(post?.title ?? '');
   const [excerpt, setExcerpt] = useState(post?.excerpt ?? '');
+  const [content, setContent] = useState(post?.content ?? '');
   const [locale, setLocale] = useState<Post['locale']>(post?.locale ?? 'es');
   const [categoryId, setCategoryId] = useState(post?.category_id ?? categories[0]?.id ?? '');
   const [coverUrl, setCoverUrl] = useState(post?.cover_image_url ?? '');
@@ -77,6 +79,8 @@ export default function PostForm({ action, categories, authorId, post, submitLab
   const tagsValue = post?.tags?.join(', ') ?? '';
   const categoryLabel =
     categories.find((category) => category.id === categoryId)?.name_es ?? 'Sin categoría';
+  const deferredContent = useDeferredValue(content);
+  const renderedContent = useMemo(() => renderMarkdown(deferredContent), [deferredContent]);
 
   return (
     <Box
@@ -205,9 +209,10 @@ export default function PostForm({ action, categories, authorId, post, submitLab
                   required
                 />
                 <TextField
-                  label="Contenido"
+                  label="Contenido Markdown"
                   name="content"
-                  defaultValue={post?.content ?? ''}
+                  value={content}
+                  onChange={(event) => setContent(event.target.value)}
                   multiline
                   minRows={18}
                   required
@@ -289,6 +294,25 @@ export default function PostForm({ action, categories, authorId, post, submitLab
               <Alert severity="info" variant="outlined">
                 El formulario prioriza el archivo subido sobre la URL escrita.
               </Alert>
+
+              <Divider />
+
+              <Box>
+                <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                  Vista previa del contenido
+                </Typography>
+                <Box
+                  className="prose"
+                  sx={{
+                    maxHeight: 420,
+                    overflow: 'auto',
+                    pr: 1,
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: renderedContent || '<p>Escribe el contenido para ver el render aquí.</p>',
+                  }}
+                />
+              </Box>
             </Stack>
           </Paper>
 
