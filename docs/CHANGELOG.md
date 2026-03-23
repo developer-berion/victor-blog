@@ -2,6 +2,8 @@
 
 ## 2026-03-23
 
+- Rolled back the admin SEO verification layer and AI phase-2 planning docs.
+- Kept the technical SEO foundation: canonical metadata, JSON-LD, `robots.txt`, `sitemap.xml`, and `/llms.txt`.
 - Added canonical SEO metadata, JSON-LD, `robots.txt`, `sitemap.xml`, and a `/llms.txt` endpoint.
 - Cleaned up public copy so titles, summaries, and newsletter text are consistently in Spanish.
 - Adjusted the admin MUI provider so public site CSS no longer overrides component styling.

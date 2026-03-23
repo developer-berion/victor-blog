@@ -70,6 +70,20 @@
 
 **Follow-up/TODO:** Keep the sitemap current as the CMS grows and add JSON-LD to new content types as they appear.
 
+## 2026-03-23 - SEO review layer rolled back
+
+**Context:** The admin SEO verification layer added extra fields and workflow complexity that the user no longer wants in the product.
+
+**Decision:** Remove the SEO review/AI phase-2 layer and keep only the technical SEO foundation.
+
+**Alternatives:** Keep the review layer, move it to a later assistant integration, or keep extra CMS fields.
+
+**Why:** The product should stay a simple blog with strong SEO basics, not an internal SEO workspace.
+
+**Impact:** The admin is lighter again, while the public site keeps canonical metadata, sitemap, robots, JSON-LD, and readable content.
+
+**Follow-up/TODO:** If AI assistance returns later, keep it external to the CMS and avoid storing AI-specific workflow fields in the database.
+
 ## 2026-03-23 - Server-only cover uploads
 
 **Context:** Post covers needed a stable storage path and public URLs.

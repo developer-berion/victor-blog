@@ -2,6 +2,8 @@
 
 ## 2026-03-23
 
+- Done: Rolled back the admin SEO verification layer, AI phase-2 docs, and SEO-specific CMS fields.
+- Done: Kept the technical SEO foundation in place: canonical metadata, JSON-LD, robots, sitemap, and llms.txt.
 - Done: Added canonical metadata, JSON-LD, `robots.txt`, `sitemap.xml`, and `/llms.txt` for search engines and LLMs.
 - Done: Cleaned up public-facing copy so the site is consistently written in Spanish with proper accents.
 - Done: Installed the MUI MCP package locally and documented how to run it with the repo script.
@@ -16,4 +18,4 @@
 - Done: Created canonical local docs for context, decisions, progress, and integrations.
 - Decisions: See [DECISIONS.md](./DECISIONS.md).
 - Blockers: None active.
-- Next: Split the current changes into small commits, then continue polishing the admin table/editor locally before any new deploy.
+- Next: Continue with the simple blog/editor workflow and only add more SEO depth if it stays lightweight and truly useful.
