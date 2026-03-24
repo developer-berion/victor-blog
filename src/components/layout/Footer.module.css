@@ -27,10 +27,10 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.42rem;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   border-bottom: none !important;
   color: var(--color-primary);
   text-decoration: none;
@@ -39,10 +39,11 @@
 
 .logoMark {
   display: block;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
   flex-shrink: 0;
+  transform: translateY(1px);
 }
 
 .logoText {
