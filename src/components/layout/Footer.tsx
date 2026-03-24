@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale } from '@/components/i18n/LocaleProvider';
 import styles from './Footer.module.css';
@@ -73,7 +74,14 @@ export default function Footer() {
         <div className={styles.top}>
           <div className={styles.brand}>
             <Link href="/" className={styles.logo}>
-              Victor Garcia
+              <Image
+                src="/brand/victor-garcia-blog-logo-transparent.svg"
+                alt="Victor Garcia Blog logo"
+                width={26}
+                height={26}
+                className={styles.logoMark}
+              />
+              <span className={styles.logoText}>Victor Garcia</span>
             </Link>
             <p className={styles.tagline}>{content.tagline}</p>
           </div>

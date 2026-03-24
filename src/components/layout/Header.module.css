@@ -37,13 +37,17 @@
   text-decoration: none;
 }
 
-.logo::before {
-  content: '';
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  box-shadow: 0 0 0 4px var(--color-primary-soft);
+.logoMark {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logoText {
+  display: inline-flex;
+  align-items: center;
 }
 
 .logo:hover {

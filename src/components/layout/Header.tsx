@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale } from '@/components/i18n/LocaleProvider';
 import styles from './Header.module.css';
@@ -47,7 +48,15 @@ export default function Header() {
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
           <Link href="/" className={styles.logo}>
-            Victor Garcia
+            <Image
+              src="/brand/victor-garcia-blog-logo-transparent.svg"
+              alt="Victor Garcia Blog logo"
+              width={28}
+              height={28}
+              className={styles.logoMark}
+              priority
+            />
+            <span className={styles.logoText}>Victor Garcia</span>
           </Link>
 
           <nav className={styles.nav}>

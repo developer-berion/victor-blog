@@ -37,12 +37,17 @@
   letter-spacing: var(--letter-spacing-tight);
 }
 
-.logo::before {
-  content: '';
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+.logoMark {
+  display: block;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logoText {
+  display: inline-flex;
+  align-items: center;
 }
 
 .tagline {

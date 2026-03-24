@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Victor Garcia Blog logo full version">
+  <title>Victor Garcia Blog logo full version</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#06101a"/>
+    </linearGradient>
+    <linearGradient id="outline" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4fd2e6"/>
+      <stop offset="100%" stop-color="#7be4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="52" fill="url(#bg)"/>
+  <g transform="translate(256 270)">
+    <text
+      x="0"
+      y="0"
+      text-anchor="middle"
+      font-family="Arial Black, Arial, sans-serif"
+      font-size="216"
+      font-weight="900"
+      letter-spacing="-18"
+      fill="#f8fbfc"
+      stroke="url(#outline)"
+      stroke-width="10"
+      paint-order="stroke fill"
+    >VG</text>
+  </g>
+</svg>
