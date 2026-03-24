@@ -57,6 +57,14 @@ export interface Post {
   authors?: Author;
 }
 
+export interface PublishedPostSummary {
+  slug: string;
+  title: string;
+  excerpt: string;
+  locale: 'es' | 'en';
+  published_at: string | null;
+}
+
 /* ---- Queries ---- */
 
 export async function getPosts(locale: string, limit = 20) {
@@ -130,6 +138,19 @@ export async function getAllPublishedPosts() {
 
   if (error) throw error;
   return data as Post[];
+}
+
+export async function getLatestPublishedPosts(locale: 'es' | 'en', limit = 3) {
+  const { data, error } = await getSupabase()
+    .from('posts')
+    .select('slug, title, excerpt, locale, published_at')
+    .eq('locale', locale)
+    .eq('published', true)
+    .order('published_at', { ascending: false })
+    .limit(limit);
+
+  if (error) throw error;
+  return data as PublishedPostSummary[];
 }
 
 export async function getPostsByCategory(categorySlug: string, locale: string) {

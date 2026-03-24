@@ -186,3 +186,13 @@ export function buildSocialShareUrls(shortlink: string, socialCopy: string) {
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
   };
 }
+
+export function buildSocialShareCaption(shortlink: string, socialCopy: string) {
+  const caption = normalizeText(socialCopy);
+
+  if (!caption) {
+    return normalizeText(shortlink);
+  }
+
+  return `${caption}\n\n${shortlink}`.trim();
+}

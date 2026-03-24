@@ -20,3 +20,4 @@
 - Added a shared Markdown rendering helper and live content preview in the admin editor.
 - Improved the admin login surface with local-first visual validation, clearer spacing, and a visible CTA button.
 - Added a semantic public article flow with a compact one-line share block placed after the editorial content.
+- Added a branded newsletter welcome email with recent posts, consulting copy, and a Berion Company footer link.

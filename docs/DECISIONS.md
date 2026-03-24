@@ -111,3 +111,17 @@
 **Impact:** Better machine readability, clearer content hierarchy, and less distraction in the article body.
 
 **Follow-up/TODO:** Keep future editorial modules visually light and avoid introducing extra DOM noise around the body copy.
+
+## 2026-03-24 - Newsletter delivery via transactional email service
+
+**Context:** The newsletter form stores subscribers in Supabase, but the product also needs a real welcome email with branded editorial copy after signup.
+
+**Decision:** Keep Supabase as the subscriber data layer and send the welcome email from the server route through a transactional email provider using a template owned by the blog.
+
+**Alternatives:** Rely on Supabase Auth email templates, send nothing after signup, or build a separate email backend.
+
+**Why:** Supabase's built-in email flow is for Auth use cases, while the newsletter needs a branded outbound email to real subscribers.
+
+**Impact:** The signup flow now saves the email in Supabase and then sends a branded welcome mail from `victor@berioncompany.com`.
+
+**Follow-up/TODO:** Keep the sender domain verified and ensure the transactional provider remains configured in production.

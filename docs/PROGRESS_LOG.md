@@ -27,5 +27,7 @@
 - Done: Kept the public article body semantic and readable for humans, search engines, and LLMs.
 - Done: Moved the share block to the end of the editorial flow and condensed it into a minimal one-line module.
 - Done: Recorded the public-content readability decision in [DECISIONS.md](./DECISIONS.md).
+- Done: Added a branded newsletter welcome email flow after subscription using the stored subscriber list in Supabase.
+- Done: Set the sender address to `victor@berioncompany.com` and included recent posts plus consulting copy in the template.
 - Blockers: Notion MCP is not available in this session, so the external Notion publish step could not be completed here.
 - Next: Commit the docs and code updates to GitHub and continue using the local docs as the source of truth.

@@ -6,7 +6,7 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import XIcon from '@mui/icons-material/X';
 import type { Locale } from '@/lib/locale';
-import { buildSocialShareUrls } from '@/lib/social-sharing';
+import { buildSocialShareCaption, buildSocialShareUrls } from '@/lib/social-sharing';
 import styles from './ShareBar.module.css';
 
 type ShareBarProps = {
@@ -39,6 +39,7 @@ export default function ShareBar({ locale, shortlink, socialCopy, socialCopyLink
   const [copied, setCopied] = useState(false);
   const copy = copyByLocale[locale];
   const shareCopy = socialCopy || socialCopyLinkedIn;
+  const shareCaption = buildSocialShareCaption(shortlink, shareCopy);
 
   const shareUrls = useMemo(
     () => buildSocialShareUrls(shortlink, shareCopy),
@@ -47,7 +48,7 @@ export default function ShareBar({ locale, shortlink, socialCopy, socialCopyLink
 
   async function handleCopy() {
     try {
-      await navigator.clipboard.writeText(shortlink);
+      await navigator.clipboard.writeText(shareCaption);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
