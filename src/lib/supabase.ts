@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { extractShareKitFromContent } from './social-sharing';
 
 let _supabase: SupabaseClient | null = null;
 
@@ -35,10 +36,14 @@ export interface Post {
   id: string;
   slug: string;
   locale: 'es' | 'en';
+  share_code: string | null;
   title: string;
   excerpt: string;
   content: string;
   cover_image_url: string | null;
+  social_copy: string | null;
+  social_copy_linkedin: string | null;
+  social_image_url: string | null;
   category_id: string;
   author_id: string;
   tags: string[];
@@ -77,6 +82,54 @@ export async function getPostBySlug(slug: string) {
 
   if (error) throw error;
   return data as Post;
+}
+
+export async function getPostByShareCode(shareCode: string) {
+  const client = getSupabase();
+
+  try {
+    const { data, error } = await client
+      .from('posts')
+      .select('*, categories(*), authors(*)')
+      .eq('share_code', shareCode)
+      .eq('published', true)
+      .single();
+
+    if (!error && data) {
+      return data as Post;
+    }
+  } catch {
+    // Fallback below for schemas that still store share-kit data inside content.
+  }
+
+  const { data, error } = await client
+    .from('posts')
+    .select('*, categories(*), authors(*)')
+    .eq('published', true);
+
+  if (error) throw error;
+
+  const post = (data as Post[]).find((row) => {
+    const kit = extractShareKitFromContent(row.content ?? '');
+    return kit.share_code === shareCode;
+  });
+
+  if (!post) {
+    throw new Error('Post not found');
+  }
+
+  return post;
+}
+
+export async function getAllPublishedPosts() {
+  const { data, error } = await getSupabase()
+    .from('posts')
+    .select('*, categories(*), authors(*)')
+    .eq('published', true)
+    .order('published_at', { ascending: false });
+
+  if (error) throw error;
+  return data as Post[];
 }
 
 export async function getPostsByCategory(categorySlug: string, locale: string) {

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tech Editorial Researcher"
+  short_description: "Investigate tech news into blog-ready briefings"
+  default_prompt: "Use $tech-editorial-researcher to analyze this tech source, cross-check related coverage, and deliver: 1. executive summary 2. verified facts 3. interpretations 4. hypotheses 5. related context 6. blog angles 7. plain-language explanation. If I choose a headline, also turn the briefing into an original blog article based on that thesis and audience."

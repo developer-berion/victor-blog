@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
+import { getAdminLoginPath } from '@/lib/admin-path';
 
 export async function POST(request: Request) {
-  const response = NextResponse.redirect(new URL('/admin/login', request.url));
+  const response = NextResponse.redirect(new URL(getAdminLoginPath(), request.url));
   response.cookies.set('victor_admin_session', '', {
     httpOnly: true,
     sameSite: 'lax',

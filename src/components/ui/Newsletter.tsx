@@ -2,9 +2,41 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLocale } from '@/components/i18n/LocaleProvider';
 import styles from './Newsletter.module.css';
 
+const copy = {
+  es: {
+    heading: 'Noticias y actualizaciones',
+    subtext:
+      'Recibe noticias, cambios y actualizaciones sobre IA, negocio y contexto LATAM directamente en tu inbox.',
+    label: 'Correo electrónico',
+    placeholder: 'tu@email.com',
+    submit: 'Suscribirse',
+    loading: 'Enviando...',
+    success: '¡Suscrito! Revisa tu inbox.',
+    alreadySubscribed: 'Ya estás suscrito.',
+    error: 'Error al suscribir.',
+    connectionError: 'Error de conexión.',
+  },
+  en: {
+    heading: 'News and updates',
+    subtext:
+      'Get news, updates, and editorial notes on AI, business, and the LATAM context directly in your inbox.',
+    label: 'Email address',
+    placeholder: 'you@email.com',
+    submit: 'Subscribe',
+    loading: 'Sending...',
+    success: 'Subscribed! Check your inbox.',
+    alreadySubscribed: 'You are already subscribed.',
+    error: 'Subscription error.',
+    connectionError: 'Connection error.',
+  },
+} as const;
+
 export default function Newsletter() {
+  const { locale } = useLocale();
+  const content = copy[locale];
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
@@ -24,15 +56,15 @@ export default function Newsletter() {
 
       if (data.success) {
         setStatus('success');
-        setMessage('¡Suscrito! Revisa tu inbox.');
+        setMessage(content.success);
         setEmail('');
       } else {
         setStatus('error');
-        setMessage(data.message === 'already_subscribed' ? 'Ya estás suscrito.' : 'Error al suscribir.');
+        setMessage(data.message === 'already_subscribed' ? content.alreadySubscribed : content.error);
       }
     } catch {
       setStatus('error');
-      setMessage('Error de conexión.');
+      setMessage(content.connectionError);
     }
   };
 
@@ -45,31 +77,25 @@ export default function Newsletter() {
       transition={{ duration: 0.5 }}
     >
       <div className={styles.inner}>
-        <h2 className={styles.heading}>Mantente al día</h2>
-        <p className={styles.subtext}>
-          Recibe análisis sobre IA y su impacto en las empresas directamente en tu inbox.
-        </p>
+        <h2 className={styles.heading}>{content.heading}</h2>
+        <p className={styles.subtext}>{content.subtext}</p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <label htmlFor="newsletter-email" className={styles.label}>
-            Correo electrónico
+            {content.label}
           </label>
           <input
             id="newsletter-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="tu@email.com"
+            placeholder={content.placeholder}
             className={styles.input}
             required
             disabled={status === 'loading'}
           />
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={status === 'loading'}
-          >
-            {status === 'loading' ? 'Enviando...' : 'Suscribirse'}
+          <button type="submit" className={styles.button} disabled={status === 'loading'}>
+            {status === 'loading' ? content.loading : content.submit}
           </button>
         </form>
 

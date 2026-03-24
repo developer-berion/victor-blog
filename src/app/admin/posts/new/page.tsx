@@ -1,6 +1,8 @@
 import { redirect } from 'next/navigation';
 import { Box, Typography } from '@mui/material';
-import { getAdminCategories, getDefaultAuthorId } from '@/lib/admin';
+import { createShareCode, getAdminCategories, getDefaultAuthorId } from '@/lib/admin';
+import { getAdminPostsPath } from '@/lib/admin-path';
+import { getSiteUrl } from '@/lib/site';
 import AdminFeedback from '../../AdminFeedback';
 import { getAdminFeedback } from '../../feedback';
 import PostForm from '../PostForm';
@@ -17,9 +19,11 @@ export default async function AdminNewPostPage({
     getDefaultAuthorId(),
   ]);
   const feedback = getAdminFeedback(searchParams);
+  const siteUrl = getSiteUrl();
+  const shareCode = createShareCode();
 
   if (!authorId) {
-    redirect('/admin/posts?error=no_author');
+    redirect(`${getAdminPostsPath()}?error=no_author`);
   }
 
   return (
@@ -29,7 +33,7 @@ export default async function AdminNewPostPage({
         <Typography variant="overline" color="primary">
           Admin
         </Typography>
-        <Typography variant="h4" component="h2" sx={{ mt: 0.5 }}>
+        <Typography variant="h5" component="h2" sx={{ mt: 0.5 }}>
           Nuevo post
         </Typography>
       </Box>
@@ -37,6 +41,8 @@ export default async function AdminNewPostPage({
         action="/api/admin/posts"
         categories={categories}
         authorId={authorId}
+        siteUrl={siteUrl}
+        shareCode={shareCode}
         submitLabel="Crear post"
       />
     </Box>

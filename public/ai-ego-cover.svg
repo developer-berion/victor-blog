@@ -1,0 +1,36 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="1080" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#02233C"/>
+      <stop offset="0.48" stop-color="#0A5B84"/>
+      <stop offset="1" stop-color="#10A6DA"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 150) rotate(140) scale(260 220)">
+      <stop stop-color="#8DE1FF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#8DE1FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="120" y="120" width="960" height="420" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#00111F" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <circle cx="980" cy="130" r="220" fill="url(#glow)"/>
+  <circle cx="180" cy="560" r="180" fill="#0C7DB0" fill-opacity="0.12"/>
+  <circle cx="1040" cy="520" r="140" fill="#FFFFFF" fill-opacity="0.08"/>
+
+  <rect x="96" y="96" width="1008" height="438" rx="32" fill="white" fill-opacity="0.08" stroke="white" stroke-opacity="0.14" filter="url(#shadow)"/>
+
+  <text x="140" y="178" fill="#BDEFFF" font-size="28" font-family="Inter, Arial, sans-serif" letter-spacing="3">EDITORIAL AI</text>
+  <text x="140" y="270" fill="white" font-size="64" font-weight="700" font-family="Inter, Arial, sans-serif">La IA no solo ayuda:</text>
+  <text x="140" y="346" fill="white" font-size="64" font-weight="700" font-family="Inter, Arial, sans-serif">tambien puede inflar tu ego</text>
+  <text x="140" y="414" fill="#D8F4FF" font-size="28" font-family="Inter, Arial, sans-serif">Pensar mejor importa mas que sonar seguro.</text>
+
+  <g transform="translate(820 210)">
+    <rect x="0" y="0" width="220" height="190" rx="24" fill="#001B2E" fill-opacity="0.42" stroke="#C8F3FF" stroke-opacity="0.2"/>
+    <circle cx="58" cy="58" r="24" fill="#A5E8FF" fill-opacity="0.24"/>
+    <circle cx="162" cy="58" r="24" fill="#A5E8FF" fill-opacity="0.24"/>
+    <rect x="42" y="112" width="136" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.76"/>
+    <rect x="66" y="140" width="88" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.45"/>
+  </g>
+</svg>

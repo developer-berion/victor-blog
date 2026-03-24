@@ -14,6 +14,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
   Paper,
   Stack,
   Table,
@@ -23,11 +24,13 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Tooltip,
 } from '@mui/material';
 import type { Post } from '@/lib/supabase';
 import AdminFeedback from '../AdminFeedback';
 import type { AdminFeedbackState } from '../feedback';
 import { deleteAdminPostAction } from './actions';
+import { getAdminEditPostPath } from '@/lib/admin-path';
 
 type AdminPostsClientProps = {
   posts: Post[];
@@ -66,16 +69,29 @@ export default function AdminPostsClient({ posts, feedback }: AdminPostsClientPr
         </Stack>
       </Paper>
 
-      <TableContainer component={Paper} variant="outlined">
-        <Table size="small" aria-label="Lista de posts">
+      <TableContainer component={Paper} variant="outlined" sx={{ overflowX: 'hidden' }}>
+        <Table
+          size="small"
+          aria-label="Lista de posts"
+          sx={{
+            tableLayout: 'fixed',
+            width: '100%',
+            '& .MuiTableCell-root': {
+              px: { xs: 1.25, md: 1.5 },
+              py: { xs: 1.05, md: 1.25 },
+            },
+          }}
+        >
           <TableHead>
             <TableRow>
-              <TableCell>Estado</TableCell>
-              <TableCell>Título</TableCell>
-              <TableCell>Categoría</TableCell>
-              <TableCell>Idioma</TableCell>
-              <TableCell>Actualizado</TableCell>
-              <TableCell align="right">Acciones</TableCell>
+              <TableCell sx={{ width: 112 }}>Estado</TableCell>
+              <TableCell sx={{ width: '40%' }}>Título</TableCell>
+              <TableCell sx={{ width: '18%' }}>Categoría</TableCell>
+              <TableCell sx={{ width: 92 }}>Idioma</TableCell>
+              <TableCell sx={{ width: 132 }}>Actualizado</TableCell>
+              <TableCell align="right" sx={{ width: 176 }}>
+                Acciones
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -88,49 +104,61 @@ export default function AdminPostsClient({ posts, feedback }: AdminPostsClientPr
                     variant={post.published ? 'filled' : 'outlined'}
                   />
                 </TableCell>
-                <TableCell>
-                  <Stack spacing={0.5}>
-                    <Typography variant="subtitle2">{post.title}</Typography>
-                    <Typography variant="body2" color="text.secondary" noWrap>
+                <TableCell sx={{ minWidth: 0 }}>
+                  <Stack spacing={0.25} sx={{ minWidth: 0 }}>
+                    <Typography variant="subtitle2" noWrap title={post.title}>
+                      {post.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" noWrap title={post.excerpt}>
                       {post.excerpt}
                     </Typography>
                   </Stack>
                 </TableCell>
-                <TableCell>{post.categories?.name_es ?? 'Sin categoría'}</TableCell>
-                <TableCell>{post.locale.toUpperCase()}</TableCell>
-                <TableCell>{new Date(post.updated_at).toLocaleDateString('es-ES')}</TableCell>
-                <TableCell align="right">
-                  <Stack
-                    direction="row"
-                    justifyContent="flex-end"
-                    spacing={1}
-                    flexWrap="wrap"
+                <TableCell>
+                  <Typography
+                    variant="body2"
+                    noWrap
+                    title={post.categories?.name_es ?? 'Sin categoría'}
                   >
-                    <Button
-                      href={`/blog/${post.slug}`}
-                      size="small"
-                      variant="text"
-                      startIcon={<VisibilityRoundedIcon fontSize="small" />}
-                    >
-                      Ver
-                    </Button>
-                    <Button
-                      href={`/admin/posts/${post.id}/edit`}
-                      size="small"
-                      variant="outlined"
-                      startIcon={<EditRoundedIcon fontSize="small" />}
-                    >
-                      Editar
-                    </Button>
-                    <Button
-                      size="small"
-                      color="error"
-                      variant="outlined"
-                      startIcon={<DeleteOutlineRoundedIcon fontSize="small" />}
-                      onClick={() => setTargetPost(post)}
-                    >
-                      Borrar
-                    </Button>
+                    {post.categories?.name_es ?? 'Sin categoría'}
+                  </Typography>
+                </TableCell>
+                <TableCell>{post.locale.toUpperCase()}</TableCell>
+                <TableCell sx={{ whiteSpace: 'nowrap' }}>
+                  {new Date(post.updated_at).toLocaleDateString('es-ES')}
+                </TableCell>
+                <TableCell align="right">
+                  <Stack direction="row" justifyContent="flex-end" spacing={0.5}>
+                    <Tooltip title="Ver post">
+                      <IconButton
+                        component="a"
+                        href={`/blog/${post.slug}`}
+                        size="small"
+                        aria-label={`Ver ${post.title}`}
+                      >
+                        <VisibilityRoundedIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Editar post">
+                      <IconButton
+                        component="a"
+                        href={getAdminEditPostPath(post.id)}
+                        size="small"
+                        aria-label={`Editar ${post.title}`}
+                      >
+                        <EditRoundedIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Borrar post">
+                      <IconButton
+                        size="small"
+                        color="error"
+                        aria-label={`Borrar ${post.title}`}
+                        onClick={() => setTargetPost(post)}
+                      >
+                        <DeleteOutlineRoundedIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
                   </Stack>
                 </TableCell>
               </TableRow>

@@ -97,3 +97,17 @@
 **Impact:** Cover image upload is part of the CMS flow; public posts can resolve images by public URL.
 
 **Follow-up/TODO:** Keep the bucket public and document file handling in the runbook.
+
+## 2026-03-24 - Semantic public article DOM
+
+**Context:** The public article pages need to be easy for humans, search engines, and LLMs to parse without extra noise.
+
+**Decision:** Keep the visible article content semantic and minimal: article body as readable HTML, machine-readable metadata, canonical URLs, JSON-LD, and a compact share block placed at the end of the editorial flow.
+
+**Alternatives:** Add decorative wrappers and dense UI panels, or keep the sharing UI higher in the article flow.
+
+**Why:** This keeps the front legible to crawlers and assistants while preserving a clean reading experience for readers.
+
+**Impact:** Better machine readability, clearer content hierarchy, and less distraction in the article body.
+
+**Follow-up/TODO:** Keep future editorial modules visually light and avoid introducing extra DOM noise around the body copy.

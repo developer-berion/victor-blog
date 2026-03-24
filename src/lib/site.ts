@@ -1,16 +1,22 @@
-export const SITE_NAME = 'Victor Garcia';
+export const SITE_NAME = "Victor Garcia";
 export const SITE_DESCRIPTION =
-  'Blog sobre inteligencia artificial enfocado en empresas, impacto en LATAM y Venezuela. Noticias, análisis y opinión desde la experiencia de un solopreneur.';
+  "Blog sobre inteligencia artificial enfocado en empresas, impacto en LATAM y Venezuela. Noticias, análisis y opinión desde la experiencia de un solopreneur.";
 
 export function getSiteUrl() {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
-  );
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (siteUrl) {
+    return siteUrl.replace(/\/+$/, '');
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    return 'http://localhost:3000';
+  }
+
+  throw new Error('Missing NEXT_PUBLIC_SITE_URL');
 }
 
-export function buildAbsoluteUrl(pathname = '/') {
+export function buildAbsoluteUrl(pathname = "/") {
   const baseUrl = getSiteUrl();
-  const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
   return new URL(normalizedPath, baseUrl).toString();
 }

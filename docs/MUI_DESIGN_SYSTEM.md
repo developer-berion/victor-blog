@@ -37,10 +37,11 @@ This document defines the admin-facing MUI system for the Victor Garcia blog/CMS
 
 ## Color Roles
 
-- Primary: dark slate for actions and strong emphasis.
-- Secondary: blue for supporting accents and links.
-- Background: warm neutral to keep the admin calm.
-- Text: high contrast primary and muted secondary.
+- Primary: deep space blue for actions and strong emphasis.
+- Secondary: cerulean for supporting accents and links.
+- Accent: fresh sky for focus, selection, and active states.
+- Background: clean white with a cool blue tint to keep the admin calm.
+- Text: ink black primary and muted blue-gray secondary.
 - Feedback: semantic colors for success, info, warning, and error.
 
 ## Component Rules
@@ -51,6 +52,7 @@ This document defines the admin-facing MUI system for the Victor Garcia blog/CMS
 - Secondary action uses outlined or text.
 - Minimum height: 44px.
 - No custom button colors unless the theme owns them.
+- Contained primary should read as the strongest blue action on screen.
 
 ### Text Fields
 

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import "./globals.css";
 import SiteChrome from "@/components/layout/SiteChrome";
 import { SITE_DESCRIPTION, SITE_NAME, getSiteUrl } from "@/lib/site";
+import { DEFAULT_LOCALE, LOCALE_COOKIE, normalizeLocale } from "@/lib/locale";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -43,15 +45,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const hasLocaleCookie = cookieStore.has(LOCALE_COOKIE);
+  const initialLocale = normalizeLocale(cookieStore.get(LOCALE_COOKIE)?.value ?? DEFAULT_LOCALE);
+
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang={initialLocale} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <SiteChrome>{children}</SiteChrome>
+        <SiteChrome initialLocale={initialLocale} hasLocaleCookie={hasLocaleCookie}>
+          {children}
+        </SiteChrome>
       </body>
     </html>
   );

@@ -17,6 +17,7 @@ Local `.env.local` and Vercel must include:
 - `ADMIN_PASSWORD`
 - `ADMIN_SESSION_SECRET`
 - `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_ADMIN_ENTRY_PATH` (recommended: `/studio`)
 
 ## Local Commands
 
@@ -28,10 +29,10 @@ npm run build
 
 ## Admin Flow
 
-- `/admin/login` sets a signed HTTP-only cookie.
-- `/admin/posts` lists posts and shows feedback.
-- `/admin/posts/new` creates a post.
-- `/admin/posts/:id/edit` updates a post.
+- `NEXT_PUBLIC_ADMIN_ENTRY_PATH/login` sets a signed HTTP-only cookie.
+- `NEXT_PUBLIC_ADMIN_ENTRY_PATH/posts` lists posts and shows feedback.
+- `NEXT_PUBLIC_ADMIN_ENTRY_PATH/posts/new` creates a post.
+- `NEXT_PUBLIC_ADMIN_ENTRY_PATH/posts/:id/edit` updates a post.
 - Deleting a post uses a confirmation dialog and a server action.
 
 ## Troubleshooting

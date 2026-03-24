@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useLocale } from '@/components/i18n/LocaleProvider';
 import styles from './Header.module.css';
 
 const categories = [
@@ -12,15 +13,16 @@ const categories = [
 ];
 
 export default function Header() {
-  const [locale, setLocale] = useState<'es' | 'en'>('es');
+  const { locale, toggleLocale } = useLocale();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const getInitialTheme = (): 'light' | 'dark' => {
-    if (typeof window === 'undefined') return 'light';
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
     const saved = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    return saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  };
-  const [theme, setTheme] = useState<'light' | 'dark'>(getInitialTheme);
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    setTheme(saved || systemTheme);
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -36,10 +38,6 @@ export default function Header() {
   const toggleTheme = () => {
     const next = theme === 'light' ? 'dark' : 'light';
     setTheme(next);
-  };
-
-  const toggleLocale = () => {
-    setLocale(locale === 'es' ? 'en' : 'es');
   };
 
   return (
@@ -83,10 +81,15 @@ export default function Header() {
               onClick={toggleLocale}
               className={styles.localToggle}
               aria-label="Toggle language"
+              aria-pressed={locale === 'en'}
             >
-              <span className={locale === 'es' ? styles.active : ''}>ES</span>
+              <span className={`${styles.localePill} ${locale === 'es' ? styles.localeActive : ''}`}>
+                ES
+              </span>
               <span className={styles.divider}>|</span>
-              <span className={locale === 'en' ? styles.active : ''}>EN</span>
+              <span className={`${styles.localePill} ${locale === 'en' ? styles.localeActive : ''}`}>
+                EN
+              </span>
             </button>
 
             <button
@@ -102,7 +105,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu */}
       <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ''}`}>
         <nav className={styles.mobileNav}>
           <Link href="/" onClick={() => setMenuOpen(false)} className={styles.mobileLink}>Blog</Link>

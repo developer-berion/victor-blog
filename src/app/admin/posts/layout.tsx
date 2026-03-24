@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material';
 import { requireAdmin } from '@/lib/admin';
+import { getAdminNewPostPath } from '@/lib/admin-path';
 
 export default async function AdminPostsLayout({
   children,
@@ -10,7 +11,7 @@ export default async function AdminPostsLayout({
   await requireAdmin();
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 } }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 }, px: { xs: 1.5, md: 3 } }}>
       <Paper variant="outlined" sx={{ p: { xs: 2, md: 3 }, mb: 3 }}>
         <Stack
           direction={{ xs: 'column', md: 'row' }}
@@ -22,7 +23,7 @@ export default async function AdminPostsLayout({
             <Typography variant="overline" color="primary">
               Admin
             </Typography>
-            <Typography variant="h4" component="h1" sx={{ mt: 0.5 }}>
+            <Typography variant="h5" component="h1" sx={{ mt: 0.5 }}>
               Panel de contenido
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 760, mt: 1 }}>
@@ -31,7 +32,7 @@ export default async function AdminPostsLayout({
           </Box>
 
           <Stack direction="row" spacing={1} flexWrap="wrap">
-            <Button href="/admin/posts/new" variant="contained">
+            <Button href={getAdminNewPostPath()} variant="contained">
               Nuevo post
             </Button>
             <Box component="form" action="/api/admin/logout" method="post">

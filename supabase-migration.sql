@@ -26,10 +26,14 @@ CREATE TABLE public.posts (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   slug TEXT UNIQUE NOT NULL,
   locale TEXT NOT NULL CHECK (locale IN ('es', 'en')),
+  share_code TEXT UNIQUE,
   title TEXT NOT NULL,
   excerpt TEXT NOT NULL,
   content TEXT NOT NULL,
   cover_image_url TEXT,
+  social_copy TEXT,
+  social_copy_linkedin TEXT,
+  social_image_url TEXT,
   category_id UUID REFERENCES public.categories(id),
   author_id UUID REFERENCES public.authors(id),
   tags TEXT[] DEFAULT '{}',
@@ -64,6 +68,7 @@ CREATE POLICY "Anyone can subscribe" ON public.subscribers FOR INSERT WITH CHECK
 CREATE INDEX idx_posts_slug ON public.posts(slug);
 CREATE INDEX idx_posts_locale ON public.posts(locale);
 CREATE INDEX idx_posts_category ON public.posts(category_id);
+CREATE INDEX idx_posts_share_code ON public.posts(share_code);
 CREATE INDEX idx_posts_published ON public.posts(published, published_at DESC);
 CREATE INDEX idx_posts_locale_published ON public.posts(locale, published, published_at DESC);
 

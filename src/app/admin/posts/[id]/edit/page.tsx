@@ -1,6 +1,9 @@
 import { notFound, redirect } from 'next/navigation';
 import { Box, Typography } from '@mui/material';
-import { getAdminCategories, getAdminPostById, getDefaultAuthorId } from '@/lib/admin';
+import { createShareCode, getAdminCategories, getAdminPostById, getDefaultAuthorId } from '@/lib/admin';
+import { getAdminPostsPath } from '@/lib/admin-path';
+import { getPostShareKit } from '@/lib/social-sharing';
+import { getSiteUrl } from '@/lib/site';
 import AdminFeedback from '../../../AdminFeedback';
 import { getAdminFeedback } from '../../../feedback';
 import PostForm from '../../PostForm';
@@ -21,14 +24,24 @@ export default async function AdminEditPostPage({
     getAdminPostById(id).catch(() => null),
   ]);
   const feedback = getAdminFeedback(searchParams);
+  const siteUrl = getSiteUrl();
+  const shareCode = post?.share_code ?? createShareCode();
 
   if (!authorId) {
-    redirect('/admin/posts?error=no_author');
+    redirect(`${getAdminPostsPath()}?error=no_author`);
   }
 
   if (!post) {
     notFound();
   }
+
+  const initialShareKit = getPostShareKit({
+    share_code: post.share_code,
+    social_copy: post.social_copy,
+    social_copy_linkedin: post.social_copy_linkedin,
+    social_image_url: post.social_image_url,
+    content: post.content,
+  });
 
   return (
     <Box sx={{ display: 'grid', gap: 2 }}>
@@ -37,7 +50,7 @@ export default async function AdminEditPostPage({
         <Typography variant="overline" color="primary">
           Admin
         </Typography>
-        <Typography variant="h4" component="h2" sx={{ mt: 0.5 }}>
+        <Typography variant="h5" component="h2" sx={{ mt: 0.5 }}>
           Editar post
         </Typography>
       </Box>
@@ -45,6 +58,8 @@ export default async function AdminEditPostPage({
         action="/api/admin/posts"
         categories={categories}
         authorId={authorId}
+        siteUrl={siteUrl}
+        shareCode={initialShareKit.share_code ?? shareCode}
         post={post}
         submitLabel="Guardar cambios"
       />

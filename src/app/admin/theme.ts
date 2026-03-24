@@ -6,87 +6,91 @@ export const adminTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1f2937',
-      dark: '#111827',
-      light: '#374151',
+      main: '#003459',
+      dark: '#00171f',
+      light: '#007ea7',
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#2563eb',
-    },
-    success: {
-      main: '#15803d',
+      main: '#007ea7',
+      light: '#00a8e8',
+      dark: '#006181',
+      contrastText: '#ffffff',
     },
     info: {
-      main: '#0369a1',
+      main: '#00a8e8',
+    },
+    success: {
+      main: '#0f8b6a',
     },
     warning: {
-      main: '#b45309',
+      main: '#b86f08',
     },
     error: {
-      main: '#b91c1c',
+      main: '#c43c3c',
     },
     background: {
-      default: '#f5f3ef',
+      default: '#f6fbfe',
       paper: '#ffffff',
     },
     text: {
-      primary: '#111827',
-      secondary: '#4b5563',
+      primary: '#00171f',
+      secondary: '#35515e',
     },
-    divider: '#e5e7eb',
+    divider: '#d6e2ea',
   },
   typography: {
     fontFamily: 'var(--font-body)',
     h1: {
       fontFamily: 'var(--font-heading)',
       fontWeight: 700,
-      letterSpacing: '-0.02em',
+      letterSpacing: '-0.03em',
     },
     h2: {
       fontFamily: 'var(--font-heading)',
       fontWeight: 700,
-      letterSpacing: '-0.02em',
+      letterSpacing: '-0.03em',
     },
     h3: {
       fontFamily: 'var(--font-heading)',
       fontWeight: 700,
-      letterSpacing: '-0.02em',
+      letterSpacing: '-0.03em',
     },
     h4: {
       fontFamily: 'var(--font-heading)',
       fontWeight: 700,
-      letterSpacing: '-0.02em',
+      letterSpacing: '-0.03em',
+      fontSize: '1.625rem',
     },
     h5: {
       fontFamily: 'var(--font-heading)',
       fontWeight: 700,
       letterSpacing: '-0.02em',
       lineHeight: 1.2,
-      fontSize: '1.5rem',
+      fontSize: '1.2rem',
     },
     h6: {
       fontFamily: 'var(--font-heading)',
       fontWeight: 700,
       letterSpacing: '-0.01em',
       lineHeight: 1.2,
-      fontSize: '1.125rem',
+      fontSize: '0.95rem',
     },
     body1: {
-      fontSize: '1rem',
-      lineHeight: 1.65,
-    },
-    body2: {
-      fontSize: '0.9375rem',
+      fontSize: '0.9rem',
       lineHeight: 1.6,
     },
+    body2: {
+      fontSize: '0.825rem',
+      lineHeight: 1.55,
+    },
     caption: {
-      fontSize: '0.8125rem',
-      lineHeight: 1.5,
+      fontSize: '0.72rem',
+      lineHeight: 1.45,
     },
     overline: {
       fontSize: '0.75rem',
-      fontWeight: 600,
+      fontWeight: 700,
       letterSpacing: '0.12em',
     },
     button: {
@@ -96,13 +100,13 @@ export const adminTheme = createTheme({
     },
   },
   shape: {
-    borderRadius: 16,
+    borderRadius: 14,
   },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: '#f5f3ef',
+          backgroundColor: '#f6fbfe',
         },
       },
     },
@@ -121,11 +125,11 @@ export const adminTheme = createTheme({
           transition: 'transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease',
         },
         containedPrimary: {
-          backgroundColor: '#1f2937',
+          backgroundColor: '#003459',
           color: '#ffffff',
           '&:hover': {
-            backgroundColor: '#111827',
-            boxShadow: '0 10px 24px rgba(15, 23, 42, 0.14)',
+            backgroundColor: '#00263f',
+            boxShadow: '0 12px 28px rgba(0, 52, 89, 0.18)',
             transform: 'translateY(-1px)',
           },
         },
@@ -141,7 +145,7 @@ export const adminTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none',
-          borderColor: '#e5e7eb',
+          borderColor: '#d6e2ea',
         },
       },
     },
@@ -164,31 +168,32 @@ export const adminTheme = createTheme({
         root: {
           borderRadius: 16,
           backgroundColor: '#ffffff',
-          minHeight: 56,
+          minHeight: 52,
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#d1d5db',
+            borderColor: '#c6d7df',
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#9ca3af',
+            borderColor: '#8fb2c2',
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#1f2937',
+            borderColor: '#00a8e8',
             borderWidth: 2,
           },
           '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#b91c1c',
+            borderColor: '#c43c3c',
           },
         },
         input: {
-          padding: '16.5px 16px',
+          padding: '14px 14px',
         },
       },
     },
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: '#4b5563',
+          color: '#35515e',
           fontWeight: 500,
+          fontSize: '0.8rem',
         },
       },
     },
@@ -197,9 +202,9 @@ export const adminTheme = createTheme({
         root: {
           marginLeft: 0,
           marginTop: 8,
-          color: '#6b7280',
+          color: '#6b8794',
           '&.Mui-error': {
-            color: '#b91c1c',
+            color: '#c43c3c',
           },
         },
       },
@@ -235,10 +240,10 @@ export const adminTheme = createTheme({
       styleOverrides: {
         head: {
           fontWeight: 700,
-          color: '#111827',
+          color: '#00171f',
         },
         body: {
-          borderBottomColor: '#e5e7eb',
+          borderBottomColor: '#d6e2ea',
         },
       },
     },

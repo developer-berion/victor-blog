@@ -11,11 +11,25 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { getAdminPostsPath } from '@/lib/admin-path';
 import { getAdminSession } from '@/lib/admin';
 
 export const metadata: Metadata = {
-  title: 'Admin Login',
-  description: 'Acceso al panel administrativo del blog.',
+  title: 'Acceso privado',
+  description: 'Acceso discreto al panel privado del blog.',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      'max-snippet': -1,
+      'max-image-preview': 'none',
+      'max-video-preview': -1,
+    },
+  },
 };
 
 export default async function AdminLoginPage({
@@ -24,7 +38,7 @@ export default async function AdminLoginPage({
   searchParams?: { error?: string };
 }) {
   if (await getAdminSession()) {
-    redirect('/admin/posts');
+    redirect(getAdminPostsPath());
   }
 
   const hasError = searchParams?.error === '1';
@@ -64,11 +78,11 @@ export default async function AdminLoginPage({
           >
             <Stack spacing={3} alignItems="stretch">
               <Stack spacing={1.25} alignItems="center" textAlign="center">
-                <Chip label="Admin" color="primary" variant="outlined" sx={{ fontWeight: 600 }} />
+                <Chip label="Privado" color="primary" variant="outlined" sx={{ fontWeight: 600 }} />
 
                 <Box>
                   <Typography variant="overline" color="text.secondary" sx={{ letterSpacing: '0.12em' }}>
-                    Victor Garcia CMS
+                    Victor Garcia Studio
                   </Typography>
                   <Typography
                     variant="h5"
@@ -88,7 +102,7 @@ export default async function AdminLoginPage({
                     color="text.secondary"
                     sx={{ mt: 1, maxWidth: 300, mx: 'auto', lineHeight: 1.7 }}
                   >
-                    Usa la contrasena administrativa para publicar y editar articulos con calma y sin ruido.
+                    Usa la contrasena privada para publicar y editar articulos con calma y sin ruido.
                   </Typography>
                 </Box>
               </Stack>

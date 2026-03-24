@@ -5,10 +5,7 @@ import { buildAbsoluteUrl } from '@/lib/site';
 export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes: MetadataRoute.Sitemap = [
-    '/',
-    '/about',
-  ].map((path) => ({
+  const staticRoutes: MetadataRoute.Sitemap = ['/', '/about'].map((path) => ({
     url: buildAbsoluteUrl(path),
     changeFrequency: path === '/' ? 'daily' : 'weekly',
     priority: path === '/' ? 1 : 0.7,
@@ -22,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categoryRoutes: MetadataRoute.Sitemap = (categories.length
     ? categories
     : [
-        { slug: 'ia-empresas' },
+        { slug: 'ai-empresas' },
         { slug: 'noticias' },
         { slug: 'latam' },
         { slug: 'opinion' },

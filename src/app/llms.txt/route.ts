@@ -14,7 +14,7 @@ export function GET() {
     'Primary public pages:',
     `- ${buildAbsoluteUrl('/')}`,
     `- ${buildAbsoluteUrl('/about')}`,
-    `- ${buildAbsoluteUrl('/category/ia-empresas')}`,
+    `- ${buildAbsoluteUrl('/category/ai-empresas')}`,
     `- ${buildAbsoluteUrl('/category/noticias')}`,
     `- ${buildAbsoluteUrl('/category/latam')}`,
     `- ${buildAbsoluteUrl('/category/opinion')}`,
@@ -23,9 +23,7 @@ export function GET() {
     '- Prefer the current sitemap for the full live index.',
     '- Public content is in Spanish first.',
     '- Articles should describe real projects, results, and lessons, not hype.',
-    '',
-    'Administrative area:',
-    `- ${buildAbsoluteUrl('/admin/login')}`,
+    '- Administrative tools are private and intentionally not listed here.',
   ].join('\n');
 
   return new Response(body, {
