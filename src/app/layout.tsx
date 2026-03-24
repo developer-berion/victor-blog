@@ -51,13 +51,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  const hasLocaleCookie = cookieStore.has(LOCALE_COOKIE);
   const initialLocale = normalizeLocale(cookieStore.get(LOCALE_COOKIE)?.value ?? DEFAULT_LOCALE);
 
   return (
     <html lang={initialLocale} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <SiteChrome initialLocale={initialLocale} hasLocaleCookie={hasLocaleCookie}>
+        <SiteChrome initialLocale={initialLocale}>
           {children}
         </SiteChrome>
       </body>

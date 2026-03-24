@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale } from '@/components/i18n/LocaleProvider';
+import { useSiteTheme } from './useSiteTheme';
 import styles from './Footer.module.css';
 
 const copy = {
@@ -66,6 +67,7 @@ const copy = {
 
 export default function Footer() {
   const { locale } = useLocale();
+  const siteTheme = useSiteTheme();
   const content = copy[locale];
 
   return (
@@ -75,7 +77,9 @@ export default function Footer() {
           <div className={styles.brand}>
             <Link href="/" className={styles.logo}>
               <Image
-                src="/brand/victor-garcia-blog-logo-transparent.svg"
+                src={siteTheme === 'dark'
+                  ? '/brand/victor-garcia-blog-logo-mark-on-dark.svg'
+                  : '/brand/victor-garcia-blog-logo-mark-on-light.svg'}
                 alt="Victor Garcia Blog logo"
                 width={26}
                 height={26}

@@ -17,10 +17,9 @@ const LocaleContext = createContext<LocaleContextValue | null>(null);
 type LocaleProviderProps = {
   children: ReactNode;
   initialLocale: Locale;
-  hasLocaleCookie: boolean;
 };
 
-export function LocaleProvider({ children, initialLocale, hasLocaleCookie }: LocaleProviderProps) {
+export function LocaleProvider({ children, initialLocale }: LocaleProviderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [locale, setLocaleState] = useState<Locale>(initialLocale);

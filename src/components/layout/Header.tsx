@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale } from '@/components/i18n/LocaleProvider';
+import { useSiteTheme } from './useSiteTheme';
 import styles from './Header.module.css';
 
 const categories = [
@@ -15,6 +16,7 @@ const categories = [
 
 export default function Header() {
   const { locale, toggleLocale } = useLocale();
+  const siteTheme = useSiteTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -49,7 +51,9 @@ export default function Header() {
         <div className={styles.inner}>
           <Link href="/" className={styles.logo}>
             <Image
-              src="/brand/victor-garcia-blog-logo-transparent.svg"
+              src={siteTheme === 'dark'
+                ? '/brand/victor-garcia-blog-logo-mark-on-dark.svg'
+                : '/brand/victor-garcia-blog-logo-mark-on-light.svg'}
               alt="Victor Garcia Blog logo"
               width={28}
               height={28}

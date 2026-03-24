@@ -11,10 +11,9 @@ import type { Locale } from '@/lib/locale';
 type SiteChromeProps = {
   children: ReactNode;
   initialLocale: Locale;
-  hasLocaleCookie: boolean;
 };
 
-export default function SiteChrome({ children, initialLocale, hasLocaleCookie }: SiteChromeProps) {
+export default function SiteChrome({ children, initialLocale }: SiteChromeProps) {
   const pathname = usePathname();
   const adminEntryPath = getAdminEntryPath();
   const isAdminRoute =
@@ -29,7 +28,7 @@ export default function SiteChrome({ children, initialLocale, hasLocaleCookie }:
   }
 
   return (
-    <LocaleProvider initialLocale={initialLocale} hasLocaleCookie={hasLocaleCookie}>
+    <LocaleProvider initialLocale={initialLocale}>
       <Header />
       <main>{children}</main>
       <Footer />
