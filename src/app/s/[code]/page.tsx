@@ -10,10 +10,6 @@ import {
 } from '@/lib/social-sharing';
 import { buildAbsoluteUrl, SITE_NAME } from '@/lib/site';
 
-type RouteContext = {
-  params: Promise<{ code: string }> | { code: string };
-};
-
 async function loadPost(code: string) {
   try {
     return await getPostByShareCode(code);

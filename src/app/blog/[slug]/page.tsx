@@ -64,7 +64,6 @@ export async function generateMetadata(
     };
   }
 
-  const contentCopy = copy[post.locale];
   const translation = getBlogTranslationPair(post.slug);
   const canonicalUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
   const socialDescription = getPostSocialCopy(post);
@@ -141,7 +140,6 @@ export default async function ArticlePage({
     notFound();
   }
 
-  const contentCopy = copy[article.locale];
   const relatedPosts = article.category_id
     ? await getRelatedPosts(article.slug, article.category_id, article.locale, 3).catch(() => [])
     : [];
@@ -159,6 +157,7 @@ export default async function ArticlePage({
   const socialCopy = getPostSocialCopy(article);
   const socialCopyLinkedIn = getPostLinkedInCopy(article);
   const authorName = article.authors?.name ?? SITE_NAME;
+  const contentCopy = copy[article.locale];
   const authorBio =
     article.locale === 'en'
       ? article.authors?.bio_en ?? contentCopy.defaultBio

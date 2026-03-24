@@ -6,9 +6,6 @@ function normalizeText(value: string | null | undefined) {
   return value?.trim() ?? '';
 }
 
-const SHARE_KIT_PREFIX = '<!-- share-kit';
-const SHARE_KIT_SUFFIX = '-->';
-
 export type ImageEditorFormat = 'instagram-4-5' | 'article-16-9';
 
 export type ImageEditor = {

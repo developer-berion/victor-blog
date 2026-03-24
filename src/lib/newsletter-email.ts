@@ -1,4 +1,4 @@
-import { buildAbsoluteUrl, SITE_NAME } from './site';
+import { buildAbsoluteUrl } from './site';
 import type { Locale } from './locale';
 import type { PublishedPostSummary } from './supabase';
 
@@ -18,39 +18,36 @@ type NewsletterTemplate = {
   consultingBody: string;
   footer: string;
   cta: string;
-  ctaLabel: string;
   brandLine: string;
 };
 
 const templates: Record<Locale, NewsletterTemplate> = {
   es: {
     subject: 'Gracias por suscribirte a Victor Garcia Blog',
-    preheader: 'Recibe análisis sobre IA, negocio y LATAM directamente en tu inbox.',
+    preheader: 'Recibe analisis sobre IA, negocio y LATAM directamente en tu inbox.',
     greeting: 'Gracias por suscribirte',
     intro:
-      'Me alegra que estés aquí. Desde este espacio comparto análisis, noticias y lectura editorial sobre IA, negocio y contexto LATAM, con una mirada práctica y sin humo.',
-    articleHeading: 'Artículos recientes',
-    consultingTitle: 'Asesorías y consultorías independientes',
+      'Me alegra que estes aqui. Desde este espacio comparto analisis, noticias y lectura editorial sobre IA, negocio y contexto LATAM, con una mirada practica y sin humo.',
+    articleHeading: 'Articulos recientes',
+    consultingTitle: 'Asesorias y consultorias independientes',
     consultingBody:
-      'También trabajo de forma independiente con empresas y personas que necesitan claridad estratégica, criterio editorial o una segunda opinión para tomar mejores decisiones.',
+      'Tambien trabajo de forma independiente con empresas y personas que necesitan claridad estrategica, criterio editorial o una segunda opinion para tomar mejores decisiones.',
     footer: 'Visitar Berioncompany.com',
     cta: 'Explorar el blog',
-    ctaLabel: 'Ver artículos',
-    brandLine: 'Victor García Blog',
+    brandLine: 'Victor Garcia Blog',
   },
   en: {
     subject: 'Thanks for subscribing to Victor Garcia Blog',
     preheader: 'Get AI, business, and LATAM analysis directly in your inbox.',
     greeting: 'Thanks for subscribing',
     intro:
-      'I’m glad you’re here. This space shares editorial analysis, news, and practical takes on AI, business, and the LATAM context without the hype.',
+      "I'm glad you're here. This space shares editorial analysis, news, and practical takes on AI, business, and the LATAM context without the hype.",
     articleHeading: 'Recent articles',
     consultingTitle: 'Independent advisory and consulting',
     consultingBody:
       'I also work independently with companies and individuals who need strategic clarity, editorial judgment, or a second opinion to make better decisions.',
     footer: 'Visit Berioncompany.com',
     cta: 'Explore the blog',
-    ctaLabel: 'View articles',
     brandLine: 'Victor Garcia Blog',
   },
 };
@@ -70,8 +67,8 @@ function buildArticleRows(locale: Locale, posts: PublishedPostSummary[]) {
   if (!items.length) {
     return `<tr><td style="padding: 0.75rem 0; color: #5C7483;">${escapeHtml(
       locale === 'es'
-        ? 'Pronto compartiré nuevos artículos contigo.'
-        : 'I’ll be sharing new articles with you soon.',
+        ? 'Pronto compartire nuevos articulos contigo.'
+        : "I'll be sharing new articles with you soon.",
     )}</td></tr>`;
   }
 
@@ -96,15 +93,7 @@ function buildArticleRows(locale: Locale, posts: PublishedPostSummary[]) {
 
 function buildPlainText(locale: Locale, posts: PublishedPostSummary[]) {
   const copy = templates[locale];
-  const lines = [
-    copy.brandLine,
-    '',
-    copy.greeting,
-    '',
-    copy.intro,
-    '',
-    copy.articleHeading,
-  ];
+  const lines = [copy.brandLine, '', copy.greeting, '', copy.intro, '', copy.articleHeading];
 
   for (const post of posts.slice(0, 3)) {
     lines.push(`- ${post.title}: ${buildAbsoluteUrl(`/blog/${post.slug}`)}`);

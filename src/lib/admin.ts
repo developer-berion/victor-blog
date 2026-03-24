@@ -346,11 +346,12 @@ export async function saveAdminPost(postId: string | null, input: AdminPostInput
 
   try {
     return await persistWithPayload(payload);
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const normalizedError = error as { code?: string; message?: string } | null;
     const missingColumn =
-      error?.code === '42703' ||
-      error?.code === 'PGRST204' ||
-      /column .* does not exist/i.test(error?.message ?? '');
+      normalizedError?.code === '42703' ||
+      normalizedError?.code === 'PGRST204' ||
+      /column .* does not exist/i.test(normalizedError?.message ?? '');
 
     if (!missingColumn) throw error;
 

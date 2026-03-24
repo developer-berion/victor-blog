@@ -8,11 +8,17 @@ export function getSiteUrl() {
     return siteUrl.replace(/\/+$/, '');
   }
 
+  const vercelUrl = process.env.VERCEL_URL?.trim();
+  if (vercelUrl) {
+    const normalizedVercelUrl = vercelUrl.replace(/^https?:\/\//, '').replace(/\/+$/, '');
+    return `https://${normalizedVercelUrl}`;
+  }
+
   if (process.env.NODE_ENV !== 'production') {
     return 'http://localhost:3000';
   }
 
-  throw new Error('Missing NEXT_PUBLIC_SITE_URL');
+  return 'https://victor.berioncompany.com';
 }
 
 export function buildAbsoluteUrl(pathname = "/") {
