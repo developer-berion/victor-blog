@@ -1,0 +1,53 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="74" y1="44" x2="1108" y2="602" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FCFF"/>
+      <stop offset="0.48" stop-color="#EAF6FF"/>
+      <stop offset="1" stop-color="#F7FBFF"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="102" y1="122" x2="1080" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#062742"/>
+      <stop offset="1" stop-color="#0C6A98"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(998 124) rotate(142) scale(254 204)">
+      <stop stop-color="#86E6FF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#86E6FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="72" y="82" width="1056" height="474" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="22" stdDeviation="28" flood-color="#0A3552" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" rx="34" fill="url(#bg)"/>
+  <circle cx="998" cy="136" r="210" fill="url(#glow)"/>
+  <circle cx="162" cy="532" r="146" fill="#8ADFFF" fill-opacity="0.12"/>
+
+  <rect x="96" y="104" width="1008" height="430" rx="34" fill="url(#panel)" filter="url(#shadow)"/>
+  <rect x="126" y="136" width="948" height="366" rx="28" fill="white" fill-opacity="0.08" stroke="white" stroke-opacity="0.12"/>
+
+  <text x="166" y="190" fill="#BDEFFF" font-size="28" font-family="Inter, Arial, sans-serif" letter-spacing="3">IA PARA EMPRESAS</text>
+  <text x="166" y="282" fill="white" font-size="58" font-weight="700" font-family="Inter, Arial, sans-serif">La inteligencia artificial no me</text>
+  <text x="166" y="350" fill="white" font-size="58" font-weight="700" font-family="Inter, Arial, sans-serif">volvio desarrollador.</text>
+  <text x="166" y="418" fill="white" font-size="58" font-weight="700" font-family="Inter, Arial, sans-serif">Me volvio mas exigente con el producto</text>
+
+  <text x="166" y="470" fill="#D7F2FF" font-size="24" font-family="Inter, Arial, sans-serif">
+    La IA acelera la ejecucion. El criterio sigue definiendo el sistema.
+  </text>
+
+  <g transform="translate(854 202)">
+    <rect x="0" y="0" width="170" height="118" rx="20" fill="#001A2C" fill-opacity="0.38" stroke="#D7F7FF" stroke-opacity="0.18"/>
+    <rect x="26" y="24" width="118" height="12" rx="6" fill="#9BE6FF" fill-opacity="0.55"/>
+    <rect x="26" y="52" width="88" height="12" rx="6" fill="white" fill-opacity="0.78"/>
+    <rect x="26" y="80" width="64" height="12" rx="6" fill="white" fill-opacity="0.38"/>
+  </g>
+
+  <g transform="translate(812 350)">
+    <rect x="0" y="0" width="214" height="98" rx="24" fill="white" fill-opacity="0.12"/>
+    <circle cx="42" cy="48" r="18" fill="#8DE3FF" fill-opacity="0.5"/>
+    <path d="M94 33H176" stroke="white" stroke-opacity="0.85" stroke-width="10" stroke-linecap="round"/>
+    <path d="M94 61H162" stroke="white" stroke-opacity="0.52" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <path d="M730 232L804 232" stroke="#85E1FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M730 400L786 400" stroke="#85E1FF" stroke-width="10" stroke-linecap="round"/>
+</svg>
